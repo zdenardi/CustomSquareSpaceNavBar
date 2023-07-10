@@ -1,61 +1,109 @@
+/*  7/10/23 - 3:23
 /*MEGA MENU WRAPPER*/
 .mega-menu-wrapper{
     width: 100vw;
     height: 360px;
     display:flex;
     flex-direction: row;
+    margin-top:64px;
+    color:#2c252D;
+    font-family: 'Lato', sans-serif;
 }
-
-
-
 
  /*MEGA MENU */
 .mega-menu-container{
-    display:flex;
-    flex-direction:column;
-    font-family: 'Lato', sans-serif;
     padding-left: 32px;
     padding-right: 32px;
     text-align: left;
+    display: flex;
+    flex-direction: row;
 }
-.mega-menu-title p{
+.mega-menu-container:first-child{
+    margin-left: 0 !important;
+}
+.mega-menu-title {
     font-weight: bold;
     font-size: 16px !important;
 }
 .mega-menu-section{
     margin-top: 24px;
-
+    margin-left: 32px;
+    padding-right: 32px;
+    border-right: solid;
+    border-right-color: rgba(170, 170, 170, 0.1);
 }
-.mega-menu-section-item{
-    display:flex;
-}
-.mega-menu-item-container{
+.mega-menu-section.photo-section{
+    margin-top: 24px;
+    margin-left: 32px;
+    padding-right: 32px;
     display: flex;
     flex-direction: row;
-    text-align: left;
-    padding: 0;
+
+}
+
+.mega-menu-section-item{
+display:flex;
+}
+.mega-menu-item-container{
+display: flex;
+flex-direction: row;
+text-align: left;
+padding: 0;
 }
 .mega-menu-section-column{
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    padding: 0;
-    margin-left:8px;
+display: flex;
+flex-direction: column;
+text-align: left;
+padding: 0;
+margin-left:8px;
 }
 .mega-menu-section-item{
-    margin-top:24px;
-    margin-bottom:24px;
-    align-items: baseline;
+margin-top:24px;
+margin-bottom:24px;
+align-items: baseline;
 }
 .mega-menu-sub-section-title{
-    font-size:16px;
-    padding:0 !important;
+font-size:16px;
+padding:0 !important;
 
 }
 .mega-menu-sub-section-sub-title{
-    font-size:14px;
+font-size:14px;
 }
 .mega-menu-footer-text{
-    font-weight: bold;
-    font-size: 16px;
+font-weight: bold;
+font-size: 16px;
+}
+
+.mega-menu-photo-wrapper{
+margin-top:96px;
+font-weight: bold;
+display:flex;
+flex-direction: row;
+}
+.mega-menu-photo-title{
+font-size: 20px;
+font-weight: bold;
+}
+.mega-menu-photo{
+background-color: lightgray;
+width: 246px;
+height: 160px;
+}
+
+.mega-menu-photo.wide{
+    background-color: lightgray;
+    width: 250px;
+    height: 130px;
+}
+.mega-menu-photo-caption{
+font-size: 16px;
+}
+
+.mega-menu-photo-item{
+margin-right:80px;
+}
+
+.mega-menu-photo-item.last{
+    margin-left: auto;
 }

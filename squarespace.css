@@ -1,0 +1,27 @@
+/*Div menu*/
+/*.header-nav .header-nav-item--folder:hover .header-nav-folder-content, .header-nav .header-nav-item--folder .header-nav-folder-content.focus-within*/
+/*{*/
+/*width:100vw;*/
+/*height:360px;*/
+/*}*/
+/*.header-nav-folder-item{*/
+/*  padding-bottom: 48px;*/
+/*  }*/
+
+
+
+.header-display-desktop [href="/products"] + .header-nav-folder-content {
+    width:100vw;
+    right:0 !important;
+    left: 0 !important;
+    position:fixed;
+    box-sizing:border-box;
+    padding:0px !important;
+    color:black
+}
+.header-display-desktop [href="/products"] + .header-nav-folder-content .header-nav-folder-item {
+    display:none;
+}
+body.sqs-is-page-editing .header-display-desktop [href="/products"] + .header-nav-folder-content {
+    display:none;
+}

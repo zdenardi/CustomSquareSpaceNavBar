@@ -1,14 +1,17 @@
 $(function(){
     // IF YOU CHANGE THE PAGES ON SQUARE SPACE, YOU MUST CHANGE THESE
+    // 7/11/23 -  2:30pm
 
-    const productsHeader = '.header-display-desktop [href="/products"] + .header-nav-folder-content'
-    const solutionsHeader = '.header-display-desktop [href="/solutions"] + .header-nav-folder-content'
-    const getStartedHeader = '.header-display-desktop [href="/get-started"] + .header-nav-folder-content'
-    const test = '.header-display-desktop  + .header-nav-wrapper'
+    // const productsDivWithContent = 'a[href="/products"] + .header-nav-folder-content';
+
+    const productsDiv = 'a[href="/products"]'
+    const solutionsDiv = '.header-display-desktop [href="/solutions"]'
+    const getStartedDiv = '.header-display-desktop [href="/get-started"]'
+    const pricingDiv = '.header-display-desktop [href="/pricing"]'
+    const headerDesktop = '.header-display-desktop';
 
 
 
-    // 7/10/23 -  3:23
     const WRAPPER_CLASS="mega-menu-wrapper";
     const CONTAINER_CLASS = "mega-menu-container";
 
@@ -69,6 +72,7 @@ $(function(){
         text:"View All Features"
     }).clone();
 
+
 // Solutions
     const megaMenuPhotoItem = $("<div/>",{
         "class":`${MEGA_MENU_PHOTO_ITEM}`
@@ -88,6 +92,15 @@ $(function(){
         "class": `${MEGA_MENU_PHOTO_TITLE}`,
         text:"Digital Solutions During"
     }).clone();
+
+    // Pricing Button
+    $('a[href="/pricing"]').addClass('custom-price-button')
+    // Other Divs
+    $('a[href="/get-started"]').addClass('custom-button')
+    $('a[href="/products"]').addClass('custom-button')
+    $('a[href="/solutions"]').addClass('custom-button')
+
+
 
     const createItem = (iconClassName,title,subTitle)=>{
         const icon = megaMenuIcon(iconClassName);
@@ -126,7 +139,7 @@ $(function(){
     }
 
     const createGetStartedMenu = ()=>{
-        const wrapper = $(`${getStartedHeader} .${WRAPPER_CLASS}`)
+        const wrapper = $(`${getStartedDiv} .${WRAPPER_CLASS}`)
         const menuSection = megaMenuSection.clone()
         const photoSection = megaMenuSection.clone()
         const photoWrapper = megaMenuPhotoWrapper.clone()
@@ -148,16 +161,77 @@ $(function(){
     }
 
     const wrapper = `<div class="${WRAPPER_CLASS}"></div>`
-    const productsContainer = megaMenuContainer.clone().append(createProductsMenu('Mobile App'),createProductsMenu('User Management'),createProductsMenu('Data Portal'))
+    const productsContainer = megaMenuContainer.clone().append(createProductsMenu('Mobile App'),createProductsMenu('User Management'),createProductsMenu('Data Portal').addClass('last'))
 
-    $(`${productsHeader}` ).append(wrapper)
-    $(`${productsHeader} .${WRAPPER_CLASS}`).append(productsContainer)
+    // $(`${productsDivWithContent}` ).append(wrapper)
+    // $(`${productsDivWithContent} .${WRAPPER_CLASS}`).append(productsContainer)
 
 
-    $(`${solutionsHeader}`).append(wrapper)
-    $(`${solutionsHeader} .${WRAPPER_CLASS}`).append(megaMenuPhotoTitle,createSolutionsMenu())
+    // $(`${solutionsDiv}`).append(wrapper)
+    // $(`${solutionsDiv} .${WRAPPER_CLASS}`).append(megaMenuPhotoTitle,createSolutionsMenu())
+    //
+    // $(`${getStartedDiv}`).append(wrapper)
+    // $(`${getStartedDiv} .${WRAPPER_CLASS}`).append(menuSection,photoSection)
 
-    $(`${getStartedHeader}`).append(wrapper)
+
+    const removeWrapper=()=>{
+        if($(`${headerDesktop} .${WRAPPER_CLASS}`).length){
+            $(`${headerDesktop} .${WRAPPER_CLASS}`).remove()
+        }
+    }
+
+    const productsHover = ()=>{
+        $(productsDiv).on("mouseover",  ()=> {
+            removeWrapper()
+            $(headerDesktop).append(wrapper)
+            $(`${headerDesktop} .${WRAPPER_CLASS}`).append(productsContainer)
+        }).on("mouseleave",()=>{
+            $(`.${WRAPPER_CLASS}`).on("mouseleave",()=>{
+                $(`.${WRAPPER_CLASS}`).remove()
+            })
+        })
+    }
+
+    const solutionsHover = ()=>{
+
+        $(solutionsDiv).on("mouseover",  ()=> {
+            removeWrapper()
+            $(headerDesktop).append(wrapper)
+            $(`${headerDesktop} .${WRAPPER_CLASS}`).addClass('column').append(megaMenuPhotoTitle,createSolutionsMenu())
+
+        })
+            .on("mouseleave",()=>{
+            $(`.${WRAPPER_CLASS}`).on("mouseleave",()=>{
+                $(`${headerDesktop} .${WRAPPER_CLASS}`).empty()
+                $(`${headerDesktop} .${WRAPPER_CLASS}`).remove()
+
+            })
+        })
+    }
     const {menuSection,photoSection} = createGetStartedMenu();
-    $(`${getStartedHeader} .${WRAPPER_CLASS}`).append(menuSection,photoSection)
+
+    const getStartedHover = ()=>{
+
+        $(getStartedDiv).on("mouseover",  ()=> {
+            removeWrapper()
+            $(headerDesktop).append(wrapper)
+            $(`${headerDesktop} .${WRAPPER_CLASS}`).append(menuSection,photoSection)
+        }).on("mouseleave",()=>{
+            $(`.${WRAPPER_CLASS}`).on("mouseleave",()=>{
+                $(`${headerDesktop} .${WRAPPER_CLASS}`).empty()
+                $(`${headerDesktop} .${WRAPPER_CLASS}`).remove()
+            })
+        })
+    }
+
+
+    // Remove title and remove squarespace menus
+    $('.header-title').addClass("remove")
+    $('.remove').remove();
+    $('.header-nav-folder-content').remove();
+
+    productsHover();
+    solutionsHover();
+    getStartedHover();
+
 });

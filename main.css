@@ -1,8 +1,13 @@
-/*  7/11/23 - 2:00pm*/
+/*  7/12/23 - 10:00am*/
 
 /* Header*/
 .header-display-desktop{
     height:128px;
+    display:block;
+}
+
+.header-nav-wrapper{
+    margin-left: 80px;
 }
 /*MEGA MENU WRAPPER*/
 .mega-menu-wrapper{
@@ -14,18 +19,13 @@
     color:#2c252D;
     font-family: 'Lato', sans-serif;
     position: absolute;
-    left:0;
+    left:80px;
     top:100px;
     background-color:white;
-
-
-
 }
 
 /*MEGA MENU */
 .mega-menu-container{
-    padding-left: 32px;
-    padding-right: 32px;
     text-align: left;
     display: flex;
     flex-direction: row;
@@ -37,12 +37,21 @@
     font-weight: bold;
     font-size: 16px !important;
 }
+.title-1 {
+    font-size: 20px !important;
+}
 .mega-menu-section{
     margin-top: 24px;
-    margin-left: 32px;
-    padding-right: 32px;
+    margin-left: 40px;
+    width:320px;
     border-right: solid;
     border-right-color: rgba(170, 170, 170, 0.1);
+}
+
+.mega-menu-section.right{
+    margin-left:80px;
+    border-right:none;
+
 }
 .mega-menu-section.last{
     border-right: none !important;
@@ -92,10 +101,11 @@
 }
 
 .mega-menu-photo-wrapper{
-    margin-top:45px;
+    margin-top: 45px;
     font-weight: bold;
-    display:flex;
+    display: flex;
     flex-direction: row;
+    width: calc(100% - 160px);
 }
 .mega-menu-photo-title{
     font-size: 20px;
@@ -105,13 +115,13 @@
     background-color: lightgray;
     width: 246px;
     height: 160px;
+    margin-bottom: 8px;
 }
-
 .mega-menu-photo.wide{
-    background-color: lightgray;
     width: 250px;
     height: 130px;
 }
+
 .mega-menu-photo-caption{
     font-size: 16px;
 }
@@ -119,12 +129,21 @@
 .mega-menu-photo-item{
     margin-right:80px;
 }
+.mega-menu-photo-item.m-1{
+    margin-right:12px;
+    margin-left:12px;
+}
 
 .mega-menu-photo-item.last{
     margin-left: auto;
 }
 .custom-button{
     padding: 16px 32px !important;
+}
+.custom-button:hover{
+    text-decoration: underline;
+    padding: 16px 32px !important;
+    text-underline-offset: 4px;
 }
 .custom-price-button {
     color: #2C252D;
@@ -143,4 +162,24 @@
 .mega-menu-wrapper.column {
     display: flex;
     flex-direction: column;
+}
+
+.header-nav-list{
+    width:100%;
+}
+.header-nav-list .contact{
+   margin-left: auto;
+}
+.header-nav-item {
+    font-size: 16px !important;
+    font-family: 'Roboto', sans-serif;
+}
+.header-nav-list .login{
+    color:white;
+    background-color: #2C252D;
+    border-radius: 4px;
+}
+.header-nav-list .login:hover{
+    background-color: #625D63;
+    text-decoration: none;
 }

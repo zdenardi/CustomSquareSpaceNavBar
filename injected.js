@@ -1,17 +1,22 @@
 $(function(){
-    // IF YOU CHANGE THE PAGES ON SQUARE SPACE, YOU MUST CHANGE THESE
-    // 7/11/23 -  2:30pm
+    // 7/12/23 -  10:00am
 
-    // const productsDivWithContent = 'a[href="/products"] + .header-nav-folder-content';
+    // Logo URL will have to change depending on what logo you want.
+    const logo = 'https://images.squarespace-cdn.com/content/v1/64ab0064ac5f404ebdeb1421/3bae4c14-fc31-4a03-a583-a35d3bf5babe/logo.png?format=1500w'
 
-    const productsDiv = 'a[href="/products"]'
-    const solutionsDiv = '.header-display-desktop [href="/solutions"]'
-    const getStartedDiv = '.header-display-desktop [href="/get-started"]'
-    const pricingDiv = '.header-display-desktop [href="/pricing"]'
+    // These are based on the nav bar links depending on the /xxxxx.
+
+    const PRODUCTS_NAV_ENTRY = '.header-nav-item a[href="/products"]'
+    const SOLUTIONS_NAV_ENTRY = '.header-nav-item a[href="/solutions"]'
+    const GET_STARTED_NAV_ENTRY = '.header-nav-item a[href="/get-started"]'
+
     const headerDesktop = '.header-display-desktop';
+    const headerNavList = '.header-nav-list'
 
 
-
+    /**
+     * This section contains CUSTOM-CSS CLASSES.
+     */
     const WRAPPER_CLASS="mega-menu-wrapper";
     const CONTAINER_CLASS = "mega-menu-container";
 
@@ -31,11 +36,9 @@ $(function(){
     const MEGA_MENU_PHOTO_CAPTION = "mega-menu-photo-caption"
 
 
-
-
-    const megaMenuWrapper = $("<div />", {
-        "class": WRAPPER_CLASS,
-    });
+    /**
+     * This section is to create quicker HTML elements for jQuery.
+     */
     const megaMenuContainer =$("<div />", {
         "class": CONTAINER_CLASS,
     });
@@ -66,14 +69,16 @@ $(function(){
     const megaMenuIcon = (className)=>$("<i />", {
         "class": className,
     }).clone();
+    const button = (btnText)=>$("<div />",{
+        "class":'custom-button header-nav-item',
+        text:btnText,
+    })
 
     const footerText = $("<p/>", {
         "class": `${MENU_FOOTER_TEXT}`,
         text:"View All Features"
     }).clone();
 
-
-// Solutions
     const megaMenuPhotoItem = $("<div/>",{
         "class":`${MEGA_MENU_PHOTO_ITEM}`
     })
@@ -96,9 +101,9 @@ $(function(){
     // Pricing Button
     $('a[href="/pricing"]').addClass('custom-price-button')
     // Other Divs
-    $('a[href="/get-started"]').addClass('custom-button')
-    $('a[href="/products"]').addClass('custom-button')
-    $('a[href="/solutions"]').addClass('custom-button')
+    $(GET_STARTED_NAV_ENTRY).addClass('custom-button')
+    $(PRODUCTS_NAV_ENTRY).addClass('custom-button')
+    $(SOLUTIONS_NAV_ENTRY).addClass('custom-button')
 
 
 
@@ -111,11 +116,22 @@ $(function(){
         column.append(sectionTitle,sectionSubTitle)
         return item.append(column)
     }
-    const createPhoto = (title) =>{
+    const createPhoto = ({caption,addCustomClass}) =>{
+
         const box = megaMenuPhoto.clone();
-        const text = megaMenuPhotoCaption(title).clone();
+
+        const text = megaMenuPhotoCaption(caption).clone();
+        if(addCustomClass){
+            box.addClass(addCustomClass)
+        }
         return (megaMenuPhotoItem.clone().append(box.add(text)));
     }
+
+    /**
+     * Creates Create Products Menu
+     * @param title
+     * @returns {*|jQuery|HTMLElement|JQuery<HTMLElement>}
+     */
     const createProductsMenu = (title)=> {
        return megaMenuSection.clone().append(
             megaMenuTitle(title),
@@ -127,30 +143,37 @@ $(function(){
 
     }
 
-
+    /**
+     * Creates Solutions Menu
+     * @returns {*|jQuery|HTMLElement|JQuery<HTMLElement>}
+     */
     const createSolutionsMenu = ()=>{
         const wrapper = megaMenuPhotoWrapper.clone()
 
-        const biddingPhoto = createPhoto('Bidding Phase');
-        const constructionPhoto = createPhoto('Construction Phase');
-        const closeoutPhoto = createPhoto('Closeout Phase');
-        const lastPhoto = createPhoto('Highlighted Case Studios').addClass('last')
+        const biddingPhoto = createPhoto({caption:'Bidding Phase'});
+        const constructionPhoto = createPhoto({caption:'Construction Phase'});
+        const closeoutPhoto = createPhoto({caption:'Closeout Phase'});
+        const lastPhoto = createPhoto({caption:'Highlighted Case Studios'}).addClass('last')
         return wrapper.append(biddingPhoto,constructionPhoto,closeoutPhoto,lastPhoto)
     }
 
+    /**
+     * Creates Get Started Menu
+     * @returns {{menuSection: (*|jQuery|HTMLElement|JQuery<HTMLElement>), photoSection: (*|jQuery|HTMLElement|JQuery<HTMLElement>)}}
+     */
     const createGetStartedMenu = ()=>{
-        const wrapper = $(`${getStartedDiv} .${WRAPPER_CLASS}`)
+        const wrapper = $(`${GET_STARTED_NAV_ENTRY} .${WRAPPER_CLASS}`)
         const menuSection = megaMenuSection.clone()
-        const photoSection = megaMenuSection.clone()
+        const photoSection = megaMenuSection.clone().addClass('right')
         const photoWrapper = megaMenuPhotoWrapper.clone()
         const newProject = createItem('fa fa-plus','Start a New Project')
         const searchProjects = createItem('fa fa-search','Search Projects')
         const thirtyDayTrial =createItem("fa fa-usd",'Start 30 Day Free Trail')
 
-        const widePhotoOne = createPhoto().addClass('wide').clone()
-        const widePhotoTwo = createPhoto().addClass('wide').clone()
-        const widePhotoThree = createPhoto().addClass('wide').clone()
-        const title = megaMenuTitle('Videos and Tutorials')
+        const widePhotoOne = createPhoto({addCustomClass:'wide'}).clone().addClass('m-1')
+        const widePhotoTwo = createPhoto({addCustomClass:'wide'}).clone().addClass('m-1')
+        const widePhotoThree = createPhoto({addCustomClass:'wide'}).clone().addClass('m-1')
+        const title = megaMenuTitle('Videos and Tutorials').addClass('title-1')
 
         photoWrapper.append(widePhotoOne,widePhotoTwo,widePhotoThree)
         menuSection.append(newProject,searchProjects,thirtyDayTrial)
@@ -163,38 +186,36 @@ $(function(){
     const wrapper = `<div class="${WRAPPER_CLASS}"></div>`
     const productsContainer = megaMenuContainer.clone().append(createProductsMenu('Mobile App'),createProductsMenu('User Management'),createProductsMenu('Data Portal').addClass('last'))
 
-    // $(`${productsDivWithContent}` ).append(wrapper)
-    // $(`${productsDivWithContent} .${WRAPPER_CLASS}`).append(productsContainer)
-
-
-    // $(`${solutionsDiv}`).append(wrapper)
-    // $(`${solutionsDiv} .${WRAPPER_CLASS}`).append(megaMenuPhotoTitle,createSolutionsMenu())
-    //
-    // $(`${getStartedDiv}`).append(wrapper)
-    // $(`${getStartedDiv} .${WRAPPER_CLASS}`).append(menuSection,photoSection)
-
-
+    /**
+     * Function to remove the main mega-menu wrapper
+     */
     const removeWrapper=()=>{
         if($(`${headerDesktop} .${WRAPPER_CLASS}`).length){
             $(`${headerDesktop} .${WRAPPER_CLASS}`).remove()
         }
     }
 
+    /**
+     * Function for the products hover listener.
+     */
     const productsHover = ()=>{
-        $(productsDiv).on("mouseover",  ()=> {
+        $(PRODUCTS_NAV_ENTRY).on("mouseover",  ()=> {
             removeWrapper()
             $(headerDesktop).append(wrapper)
             $(`${headerDesktop} .${WRAPPER_CLASS}`).append(productsContainer)
         }).on("mouseleave",()=>{
             $(`.${WRAPPER_CLASS}`).on("mouseleave",()=>{
-                $(`.${WRAPPER_CLASS}`).remove()
+                removeWrapper()
             })
         })
     }
+    /**
+     * Function for the solutions hover listener.
+     */
 
     const solutionsHover = ()=>{
 
-        $(solutionsDiv).on("mouseover",  ()=> {
+        $(SOLUTIONS_NAV_ENTRY).on("mouseover",  ()=> {
             removeWrapper()
             $(headerDesktop).append(wrapper)
             $(`${headerDesktop} .${WRAPPER_CLASS}`).addClass('column').append(megaMenuPhotoTitle,createSolutionsMenu())
@@ -202,36 +223,48 @@ $(function(){
         })
             .on("mouseleave",()=>{
             $(`.${WRAPPER_CLASS}`).on("mouseleave",()=>{
-                $(`${headerDesktop} .${WRAPPER_CLASS}`).empty()
-                $(`${headerDesktop} .${WRAPPER_CLASS}`).remove()
-
+                removeWrapper()
             })
         })
     }
     const {menuSection,photoSection} = createGetStartedMenu();
 
+    /**
+     * Function to listen for the getStartedHover
+     */
     const getStartedHover = ()=>{
 
-        $(getStartedDiv).on("mouseover",  ()=> {
+        $(GET_STARTED_NAV_ENTRY).on("mouseover",  ()=> {
             removeWrapper()
             $(headerDesktop).append(wrapper)
             $(`${headerDesktop} .${WRAPPER_CLASS}`).append(menuSection,photoSection)
         }).on("mouseleave",()=>{
             $(`.${WRAPPER_CLASS}`).on("mouseleave",()=>{
-                $(`${headerDesktop} .${WRAPPER_CLASS}`).empty()
-                $(`${headerDesktop} .${WRAPPER_CLASS}`).remove()
+                removeWrapper()
             })
         })
     }
 
 
-    // Remove title and remove squarespace menus
+    /**
+     * Remove title text and remove squarespace 'folder' menus
+     * Due to some squaresace wonkyness, You have to add the class of remove, then select that class to remove.
+     * Don't ask me why.
+     */
     $('.header-title').addClass("remove")
     $('.remove').remove();
     $('.header-nav-folder-content').remove();
 
+    // Make Menus on Hover
     productsHover();
     solutionsHover();
     getStartedHover();
 
+    // Create logo
+    const img = $(`<img id="logo" src=${logo}/>`)
+    $(headerNavList).prepend(img)
+    // Add Contact Us Button
+    $(headerNavList).append(button('Contact Us').addClass('contact'))
+    // Add Login Button
+    $(headerNavList).append(button('Login').addClass('login'))
 });

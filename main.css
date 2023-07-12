@@ -1,4 +1,4 @@
-/*  7/12/23 - 10:00am*/
+/*  7/12/23 - 12:00am*/
 
 /* Header*/
 .header-display-desktop{
@@ -95,7 +95,7 @@
 .mega-menu-sub-section-sub-title{
     font-size:14px;
 }
-.mega-menu-footer-text{
+.mega-menu-footer{
     font-weight: bold;
     font-size: 16px;
 }
@@ -141,7 +141,7 @@
     padding: 16px 32px !important;
 }
 .custom-button:hover{
-    text-decoration: underline;
+    text-decoration: underline! important;
     padding: 16px 32px !important;
     text-underline-offset: 4px;
 }
@@ -182,4 +182,15 @@
 .header-nav-list .login:hover{
     background-color: #625D63;
     text-decoration: none;
+}
+
+/*Icon Colors*/
+.fa-orange{
+    color:orange;
+}
+.fa-green{
+    color:green;
+}
+.fa-blue{
+    color:blue
 }

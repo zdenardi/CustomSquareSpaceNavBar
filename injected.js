@@ -1,5 +1,5 @@
 $(function(){
-    // 7/12/23 -  10:00am
+    // 7/12/23 -  12:00am
 
     // Logo URL will have to change depending on what logo you want.
     const logo = 'https://images.squarespace-cdn.com/content/v1/64ab0064ac5f404ebdeb1421/3bae4c14-fc31-4a03-a583-a35d3bf5babe/logo.png?format=1500w'
@@ -44,7 +44,7 @@ $(function(){
     });
     const megaMenuTitle = (title)=>$("<div />", {
         "class": MENU_TITLE_CLASS,
-        text:title
+        text:title,
     }).clone();
     const megaMenuSection = $("<div />", {
         "class": MENU_SECTION_CLASS,
@@ -55,17 +55,16 @@ $(function(){
     const megaMenuSectionColumn = $("<div />", {
         "class": MENU_SECTION_COLUMN_CLASS,
     });
-    const megaMenuSectionTitle = (title)=>$("<div />", {
+    const megaMenuSectionTitle = ({link,title})=>$("<div />", {
         "class": MENU_SECTION_TITLE_CLASS,
-        text:title
-    }).clone();
+    }).append(`<a href='${link}'>${title}</a>`).clone();
     const megaMenuSectionSubTitle = (subTitle)=> $("<div />", {
         "class": MENU_SECTION_SUB_TITLE_CLASS,
         text:subTitle
     }).clone();
-    const megaMenuFooter = $("<div />", {
+    const megaMenuFooter = ({link,text})=> $("<div />", {
         "class": MENU_FOOTER_CLASS,
-    }).clone();
+    }).append(`<a href='${link}'>${text}</a>`).clone();
     const megaMenuIcon = (className)=>$("<i />", {
         "class": className,
     }).clone();
@@ -74,10 +73,7 @@ $(function(){
         text:btnText,
     })
 
-    const footerText = $("<p/>", {
-        "class": `${MENU_FOOTER_TEXT}`,
-        text:"View All Features"
-    }).clone();
+
 
     const megaMenuPhotoItem = $("<div/>",{
         "class":`${MEGA_MENU_PHOTO_ITEM}`
@@ -106,20 +102,22 @@ $(function(){
     $(SOLUTIONS_NAV_ENTRY).addClass('custom-button')
 
 
-
-    const createItem = (iconClassName,title,subTitle)=>{
+    /**
+     * @param props Obj - {iconClassName:string,title:string,link:string,subtitle:string}
+     * @returns {*|jQuery|HTMLElement|JQuery<HTMLElement>}
+     */
+    const createItem = (props)=>{
+        const {iconClassName,title,link,subTitle} = props
         const icon = megaMenuIcon(iconClassName);
         const column = megaMenuSectionColumn.clone();
-        const sectionTitle = megaMenuSectionTitle(title);
+        const sectionTitle = megaMenuSectionTitle({title,link});
         const sectionSubTitle = megaMenuSectionSubTitle(subTitle);
         const item = megaMenuSectionItem.clone().append(icon)
         column.append(sectionTitle,sectionSubTitle)
         return item.append(column)
     }
     const createPhoto = ({caption,addCustomClass}) =>{
-
         const box = megaMenuPhoto.clone();
-
         const text = megaMenuPhotoCaption(caption).clone();
         if(addCustomClass){
             box.addClass(addCustomClass)
@@ -133,12 +131,30 @@ $(function(){
      * @returns {*|jQuery|HTMLElement|JQuery<HTMLElement>}
      */
     const createProductsMenu = (title)=> {
+        const item1 = {
+            iconClassName:'fa fa-circle-o fa-orange',
+            title:'Digital Stationing',
+            link:'http://www.google.com',
+            subTitle:'Find your location at ease'
+        }
+        const item2 = {
+            iconClassName:'fa fa-camera fa-green',
+            title:'Documentation',
+            link:'http://www.google.com',
+            subTitle:'Photography the jobsite.'
+        }
+        const item3 = {
+            iconClassName:'fa fa-comment-o fa-blue',
+            title:'Communicate',
+            link:'http://www.google.com',
+            subTitle:'Share Progress with team.'
+        }
        return megaMenuSection.clone().append(
             megaMenuTitle(title),
-            createItem('fa fa-circle-o','Digital Stationing','Find your location at ease.'),
-            createItem('fa fa-camera','Documentation','Photography the jobsite.'),
-            createItem('fa fa-comment-o','Communicate','Share Progress with team.'),
-            megaMenuFooter.append(footerText).clone()
+            createItem(item1),
+            createItem(item2),
+            createItem(item3),
+            megaMenuFooter({text:'View All Features',link:'www.google.com'}),
         )
 
     }
@@ -166,9 +182,24 @@ $(function(){
         const menuSection = megaMenuSection.clone()
         const photoSection = megaMenuSection.clone().addClass('right')
         const photoWrapper = megaMenuPhotoWrapper.clone()
-        const newProject = createItem('fa fa-plus','Start a New Project')
-        const searchProjects = createItem('fa fa-search','Search Projects')
-        const thirtyDayTrial =createItem("fa fa-usd",'Start 30 Day Free Trail')
+        const newProjectProps ={
+            iconClassName:'fa fa-plus',
+            title:'Start a New Project',
+            link:'http://www.google.com'
+        }
+        const searchProjectsProps = {
+            iconClassName:'fa fa-search',
+            title:'Search Projects',
+            link:'http://www.google.com'
+        }
+        const thirtyDayTrail = {
+            iconClassName:'fa fa-usd',
+            title:'Start 30 Day Free Trail',
+            link:'http://www.google.com'
+        }
+        const newProject = createItem(newProjectProps)
+        const searchProjects = createItem(searchProjectsProps)
+        const thirtyDayTrial =createItem(thirtyDayTrail)
 
         const widePhotoOne = createPhoto({addCustomClass:'wide'}).clone().addClass('m-1')
         const widePhotoTwo = createPhoto({addCustomClass:'wide'}).clone().addClass('m-1')

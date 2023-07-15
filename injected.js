@@ -1,5 +1,5 @@
 $(function(){
-    // 7/12/23 -  12:00am
+    // 7/12/23 -  5:15m
 
     // Logo URL will have to change depending on what logo you want.
     const logo = 'https://images.squarespace-cdn.com/content/v1/64ab0064ac5f404ebdeb1421/3bae4c14-fc31-4a03-a583-a35d3bf5babe/logo.png?format=1500w'
@@ -19,7 +19,7 @@ $(function(){
      */
     const WRAPPER_CLASS="mega-menu-wrapper";
     const CONTAINER_CLASS = "mega-menu-container";
-
+``
     const MENU_TITLE_CLASS = "mega-menu-title";
     const MENU_SECTION_CLASS = "mega-menu-section";
     const MENU_SECTION_ITEM_CLASS = "mega-menu-section-item";
@@ -271,7 +271,7 @@ $(function(){
             $(`${headerDesktop} .${WRAPPER_CLASS}`).append(menuSection,photoSection)
         }).on("mouseleave",()=>{
             $(`.${WRAPPER_CLASS}`).on("mouseleave",()=>{
-                removeWrapper()
+                // removeWrapper()
             })
         })
     }

@@ -99,7 +99,7 @@
     font-weight: bold;
     font-size: 16px;
 }
-
+/*Because of squarespace, this is duplicated in Code injection*/
 .mega-menu-photo-wrapper{
     margin-top: 45px;
     font-weight: bold;
@@ -138,6 +138,9 @@
     margin-left: auto;
 }
 .custom-button{
+    font-family: 'Roboto', sans-serif;
+    font-size:16px;
+    font-weight: bold;
     padding: 16px 32px !important;
 }
 .custom-button:hover{
@@ -150,7 +153,9 @@
     background-color: #A8FCB8;
     padding: 16px 32px !important;
     border-radius: 4px;
-    box-shadow: 2px 2px 10px black;
+    box-shadow: 1px 1px 5px #2C252D;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
 }
 .custom-price-button:hover {
     background-color: #DAFEE1;

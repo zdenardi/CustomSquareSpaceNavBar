@@ -1,5 +1,5 @@
 $(function(){
-    // 7/12/23 -  5:15m
+    // 7/17/23 -  10:37am
 
     // Logo URL will have to change depending on what logo you want.
     const logo = 'https://images.squarespace-cdn.com/content/v1/64ab0064ac5f404ebdeb1421/3bae4c14-fc31-4a03-a583-a35d3bf5babe/logo.png?format=1500w'
@@ -197,9 +197,9 @@ $(function(){
             title:'Start 30 Day Free Trail',
             link:'http://www.google.com'
         }
-        const newProject = createItem(newProjectProps)
-        const searchProjects = createItem(searchProjectsProps)
-        const thirtyDayTrial =createItem(thirtyDayTrail)
+        const newProject = createItem(newProjectProps).addClass('get-started-item first')
+        const searchProjects = createItem(searchProjectsProps).addClass('get-started-item')
+        const thirtyDayTrial =createItem(thirtyDayTrail).addClass('get-started-item')
 
         const widePhotoOne = createPhoto({addCustomClass:'wide'}).clone().addClass('m-1')
         const widePhotoTwo = createPhoto({addCustomClass:'wide'}).clone().addClass('m-1')
@@ -236,7 +236,7 @@ $(function(){
             $(`${headerDesktop} .${WRAPPER_CLASS}`).append(productsContainer)
         }).on("mouseleave",()=>{
             $(`.${WRAPPER_CLASS}`).on("mouseleave",()=>{
-                removeWrapper()
+                // removeWrapper()
             })
         })
     }
@@ -254,7 +254,7 @@ $(function(){
         })
             .on("mouseleave",()=>{
             $(`.${WRAPPER_CLASS}`).on("mouseleave",()=>{
-                removeWrapper()
+                // removeWrapper()
             })
         })
     }

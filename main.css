@@ -1,5 +1,5 @@
-/*  7/12/23 - 12:00am*/
-
+/*  7/17/23 - 11:25am*/
+/* NOTE- MEGA-MENU-WRAPPER CSS IS IN JS */
 /* Header*/
 .header-display-desktop{
     height:128px;
@@ -7,22 +7,10 @@
 }
 
 .header-nav-wrapper{
-    margin-left: 80px;
+    margin-left: 140px;
+    margin-right: 140px;
 }
 /*MEGA MENU WRAPPER*/
-.mega-menu-wrapper{
-    width: 100vw;
-    height: 360px;
-    display:flex;
-    flex-direction: row;
-    margin-top:64px;
-    color:#2c252D;
-    font-family: 'Lato', sans-serif;
-    position: absolute;
-    left:80px;
-    top:100px;
-    background-color:white;
-}
 
 /*MEGA MENU */
 .mega-menu-container{
@@ -34,16 +22,20 @@
     margin-left: 0 !important;
 }
 .mega-menu-title {
-    font-weight: bold;
     font-size: 16px !important;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
 }
 .title-1 {
     font-size: 20px !important;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    color:#2C252D
 }
 .mega-menu-section{
     margin-top: 24px;
     margin-left: 40px;
-    width:320px;
+    width:300px;
     border-right: solid;
     border-right-color: rgba(170, 170, 170, 0.1);
 }
@@ -90,23 +82,34 @@
 .mega-menu-sub-section-title{
     font-size:16px;
     padding:0 !important;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    color: #2C252D
 
 }
-.mega-menu-sub-section-sub-title{
-    font-size:14px;
+.mega-menu-sub-section-sub-title {
+    margin-top: 4px;
+    font-size: 14px;
 }
-.mega-menu-footer{
+.mega-menu-footer {
     font-weight: bold;
     font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    padding-top: 12px;
 }
-/*Because of squarespace, this is duplicated in Code injection*/
+.mega-menu-footer a{
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+}
 .mega-menu-photo-wrapper{
-    margin-top: 45px;
+    margin-top: 20px;
     font-weight: bold;
     display: flex;
     flex-direction: row;
-    width: calc(100% - 160px);
+    width: 100%;
 }
+
 .mega-menu-photo-title{
     font-size: 20px;
     font-weight: bold;
@@ -127,7 +130,7 @@
 }
 
 .mega-menu-photo-item{
-    margin-right:80px;
+    margin-right:30px;
 }
 .mega-menu-photo-item.m-1{
     margin-right:12px;
@@ -136,12 +139,14 @@
 
 .mega-menu-photo-item.last{
     margin-left: auto;
+    margin-right:140px;
 }
 .custom-button{
     font-family: 'Roboto', sans-serif;
     font-size:16px;
     font-weight: bold;
-    padding: 16px 32px !important;
+    padding: 16px 28px !important;
+    color: #2C252D
 }
 .custom-button:hover{
     text-decoration: underline! important;
@@ -149,11 +154,11 @@
     text-underline-offset: 4px;
 }
 .custom-price-button {
-    color: #2C252D;
+    color: #2C252D !important;
     background-color: #A8FCB8;
     padding: 16px 32px !important;
     border-radius: 4px;
-    box-shadow: 1px 1px 5px #2C252D;
+    box-shadow: 1px 1px 4px #D8DAE6;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
 }
@@ -171,6 +176,7 @@
 
 .header-nav-list{
     width:100%;
+    align-items:center;
 }
 .header-nav-list .contact{
    margin-left: auto;
@@ -183,12 +189,29 @@
     color:white;
     background-color: #2C252D;
     border-radius: 4px;
+    box-shadow: 1px 1px 4px #D8DAE6;
 }
 .header-nav-list .login:hover{
     background-color: #625D63;
     text-decoration: none;
 }
 
+.get-started-item{
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color:#2C252D
+}
+.get-started-item a{
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color:#2C252D
+}
+
+.get-started-item.first{
+    margin-top:0;
+}
 /*Icon Colors*/
 .fa-orange{
     color:orange;

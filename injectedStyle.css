@@ -1,0 +1,14 @@
+/*Because of squarespace, this is duplicated in Code injection*/
+.mega-menu-wrapper {
+    width: calc((100%) - 140px);
+    height: 360px;
+    display: flex;
+    flex-direction: row;
+    color: #2c252d;
+    font-family: 'Lato',sans-serif;
+    position: absolute;
+    left: 140px;
+    top: 100px;
+    background-color: #fff;
+}
+
